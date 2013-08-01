@@ -6,7 +6,7 @@
     "keywords": ["form"],
     "license": "MIT",
     "authors": [
-        {"name": "Luke Rotherfield", "email": "luke@lrotherfield.com"},
+        {"name": "Luke Rotherfield", "email": "luke@lrotherfield.com"}
     ],
     "require": {
         "php": ">=5.3.2",
