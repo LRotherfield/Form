@@ -30,15 +30,14 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     }
 
     /**
-     * If the passed argument is a valid entity return the id, else throw an exception
+     * If the passed argument is a valid entity return the id, else return empty string
      * @param mixed $entity
-     * @throws TransformationFailedException
      * @return integer|string
      */
     public function transform($entity)
     {
         if (is_null($entity) || !is_object($entity) || !method_exists($entity, 'getId')) {
-            throw new TransformationFailedException("Failed to get identifier from passed entity value");
+            return '';
         }
 
         return $entity->getId();
