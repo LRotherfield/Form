@@ -16,6 +16,7 @@
     "autoload": {
         "psr-0": { "Lrotherfield\\Component\\Form\\": "" }
     },
+    "target-dir": "Lrotherfield/Component/Form",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
