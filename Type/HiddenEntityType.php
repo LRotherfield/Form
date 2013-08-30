@@ -38,8 +38,8 @@ class HiddenEntityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $entityTransformer = new EntityToIdentifierTransformer($this->om);
-        $entityTransformer->setEntityRepository($options['entity_repository']);
+        $entityTransformer = new $options['transformer']($this->om);
+        $entityTransformer->setEntityRepository($options['class']);
         $builder->addModelTransformer($entityTransformer);
     }
 
@@ -49,9 +49,12 @@ class HiddenEntityType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $resolver->setDefaults(array(
+               'transformer' => 'Lrotherfield\Component\Form\DataTransformer\EntityToIdentifierTransformer'
+            ));
         $resolver->setRequired(
             array(
-                "entity_repository"
+                "class"
             )
         );
     }

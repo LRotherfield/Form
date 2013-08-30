@@ -8,7 +8,7 @@ To install the form component simply add it to your composer.json requirements:
 
 ```
 "require": {
-        "lrotherfield/form": "1.0.x-dev",
+        "lrotherfield/form": "1.1.x-dev",
 }
 ```
 
@@ -37,11 +37,11 @@ public function buildForm(FormBuilderInterface $builder, array $options)
     $builder
         //...
         ->add('example', 'hidden_entity', array(
-                "entity_repository" => "Lrotherfield\\Bundle\\ExampleBundle\\Entity\\ExampleEntity"
+                "class" => "Lrotherfield\\Bundle\\ExampleBundle\\Entity\\ExampleEntity"
             ));
     ;
 }
 ```
 
-The only additional requirement is the "entity_repository" option which must be a fully qualified namespace to
+The only additional requirement is the "class" option which must be a fully qualified namespace to
 the entity that you want to be used in the transformation
