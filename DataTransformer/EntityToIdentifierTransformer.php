@@ -53,7 +53,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     public function reverseTransform($id)
     {
         if (!$id) {
-            throw new TransformationFailedException("No id was submitted");
+            return null;
         }
 
         $entity = $this->om->getRepository($this->entityRepository)->find($id);
