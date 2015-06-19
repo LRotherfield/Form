@@ -5,6 +5,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Lrotherfield\Component\Form\DataTransformer\EntityToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -45,9 +46,9 @@ class HiddenEntityType extends AbstractType
 
     /**
      * Require the entity repository option to be set on the field
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                'transformer' => 'Lrotherfield\Component\Form\DataTransformer\EntityToIdentifierTransformer'
@@ -57,6 +58,15 @@ class HiddenEntityType extends AbstractType
                 "class"
             )
         );
+    }
+
+    /**
+     * Require the entity repository option to be set on the field
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
     }
 
     /**
