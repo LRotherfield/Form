@@ -75,14 +75,6 @@ class HiddenEntityType extends AbstractType
      */
     public function getParent()
     {
-        return 'hidden';
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'hidden_entity';
+        return '\Symfony\Component\Form\Extension\Core\Type\HiddenType';
     }
 }
