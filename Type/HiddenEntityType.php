@@ -70,18 +70,37 @@ class HiddenEntityType extends AbstractType
     }
 
     /**
-     * Set the parent form type to hidden
+     * Set the parent form type to Symfony core HiddenType
+     *
+     * TODO: when drop Symfony 2.x support, add use statement above
+     *       for HiddenType core class and return HiddenType::class
+     *       here instead of path string
+     *
      * @return string
      */
     public function getParent()
     {
-        return 'hidden';
+        return 'Symfony\Component\Form\Extension\Core\Type\HiddenType';
     }
 
     /**
+     * Symfony 2.x version of getBlockPrefix()
+     *
+     * TODO: when drop Symfony 2.x support, remove this method
+     *
      * @return string
      */
     public function getName()
+    {
+        return 'hidden_entity';
+    }
+
+    /**
+     * Prefix form input field id attributes with 'hidden_entity'
+     *
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'hidden_entity';
     }
