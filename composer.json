@@ -18,7 +18,7 @@
     "target-dir": "Lrotherfield/Component/Form",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }

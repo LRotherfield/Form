@@ -8,7 +8,7 @@ To install the form component simply add it to your composer.json requirements:
 
 ```
 "require": {
-        "lrotherfield/form": "1.1.x-dev",
+        "lrotherfield/form": "2.0.x-dev",
 }
 ```
 
