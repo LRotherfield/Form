@@ -1,7 +1,6 @@
 {
     "name": "lrotherfield/form",
     "type": "Symfony2-Component",
-    "version":"1.1.0",
     "description": "Additional components for the Symfony2 form components",
     "keywords": ["form"],
     "license": "MIT",
