@@ -30,17 +30,23 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     }
 
     /**
-     * If the passed argument is a valid entity return the id, else return empty string
+     * If the passed argument is a valid entity where {identifier} !== null, else return empty string
      * @param mixed $entity
      * @return integer|string
      */
     public function transform($entity)
     {
-        if (is_null($entity) || !is_object($entity) || !method_exists($entity, 'getId')) {
+        if (is_null($entity) || !is_object($entity)) {
             return '';
         }
-
-        return $entity->getId();
+        
+        $meta = $this->om->getClassMetadata(get_class($entity));
+        $identifier = current($meta->getIdentifierValues($entity));
+        if($identifier === null) {
+            return '';
+        }
+        
+        return $identifier;
     }
 
     /**
