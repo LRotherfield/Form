@@ -1,7 +1,7 @@
 <?php
 namespace Lrotherfield\Component\Form\Type;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Lrotherfield\Component\Form\DataTransformer\EntityToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,16 +20,16 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class HiddenEntityType extends AbstractType
 {
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
-    private $om;
+    private $em;
 
     /**
-     * @param ObjectManager $om
+     * @param EntityManagerInterface $em
      */
-    public function __construct(ObjectManager $om)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->om = $om;
+        $this->em = $em;
     }
 
     /**
@@ -39,7 +39,7 @@ class HiddenEntityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $entityTransformer = new $options['transformer']($this->om);
+        $entityTransformer = new $options['transformer']($this->em);
         $entityTransformer->setEntityRepository($options['class']);
         $builder->addModelTransformer($entityTransformer);
     }
