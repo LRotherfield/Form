@@ -1,9 +1,9 @@
 <?php
 namespace Lrotherfield\Component\Form\DataTransformer;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Class EntityToIntTransformer
@@ -16,17 +16,17 @@ use Doctrine\Common\Persistence\ObjectManager;
 class EntityToIdentifierTransformer implements DataTransformerInterface
 {
     /**
-     * @var \Doctrine\Common\Persistence\ObjectManager
+     * @var EntityManagerInterface
      */
-    private $om;
+    private $em;
     private $entityRepository;
 
     /**
-     * @param ObjectManager $om
+     * @param EntityManagerInterface $em
      */
-    public function __construct(ObjectManager $om)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->om = $om;
+        $this->em = $em;
     }
 
     /**
@@ -56,7 +56,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
             return null;
         }
 
-        $entity = $this->om->getRepository($this->entityRepository)->find($id);
+        $entity = $this->em->getRepository($this->entityRepository)->find($id);
 
         if (null === $entity) {
             throw new TransformationFailedException(sprintf(
